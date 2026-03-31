@@ -1,0 +1,40 @@
+# Chapter 1: Adopt MCP on .NET: Problems, Patterns, and Payoff
+
+## Overview
+
+This chapter frames the motivation for MCP by examining five recurring pain points in .NET distributed architectures: resource distribution bottlenecks, capability standardization, server complexity, client integration friction, and secure deployment. It introduces the Travel Booking reference application and defines measurable success criteria that the reader tracks through the rest of the book.
+
+## Section headings
+
+1. The problem landscape
+2. MCP at a glance
+3. The reference domain
+4. Success criteria
+
+## Skills
+
+- Identify bottlenecks in current .NET architectures
+- Map problems to MCP constructs
+- Translate Travel Booking workflows into MCP capabilities
+- Define measurable outcomes for latency, throughput, and cost
+
+## Code samples
+
+| File | Section | Description |
+|------|---------|-------------|
+| `code/ch01_1_without_mcp_integration.cs` | 1.4 | Manual HTTP integration before MCP — tight coupling, bespoke auth, brittle contracts |
+| `code/ch01_2_with_mcp_search_flights.cs` | 1.4 | `SearchFlightsTool` registered with MCP — schema generated automatically, any host can discover it |
+
+## Running the samples
+
+```bash
+cd code
+dotnet run
+```
+
+The Chapter 1 project does not start a server. It demonstrates the before/after contrast as runnable class definitions. Inspect the two tool files side by side to see what MCP removes from the integration surface.
+
+## Further reading
+
+- MCP C# SDK: https://github.com/modelcontextprotocol/csharp-sdk
+- MCP specification: https://modelcontextprotocol.io/docs/getting-started/intro

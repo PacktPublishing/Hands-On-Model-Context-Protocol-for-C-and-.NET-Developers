@@ -1,0 +1,87 @@
+// Chapter 2 - Section 2.4.5
+// Snapshot-based backward-compatibility test for the SearchFlights tool schema.
+// Captures the full InputSchema JSON on first run and writes it to a snapshot file.
+// On subsequent runs it compares the live schema to the snapshot. The test fails in CI
+// if any required fields are added, renamed, or removed, protecting connected clients
+// from breaking changes without a deliberate version bump.
+
+using ModelContextProtocol.Client;
+using System.Text.Json;
+using Xunit;
+
+namespace TravelBooking.ContractTests;
+
+public sealed class SearchFlightsSchemaCompatibilityTests : IAsyncLifetime
+{
+    private const string SnapshotPath = "snapshots/search_flights_schema.json";
+    private McpClient? _client;
+
+    public async Task InitializeAsync()
+    {
+        var transport = new StdioClientTransport(new StdioClientTransportOptions
+        {
+            Command = "dotnet",
+            Arguments = ["run", "--project", "src/FlightsServer", "--no-build"],
+            Name = "FlightsServer"
+        });
+
+        _client = await McpClient.CreateAsync(transport);
+    }
+
+    public async Task DisposeAsync()
+    {
+        if (_client is not null)
+            await _client.DisposeAsync();
+    }
+
+    [Fact]
+    public async Task SearchFlights_schema_matches_approved_snapshot()
+    {
+        var tools = await _client!.ListToolsAsync();
+        var tool = tools.Single(t => t.Name == "SearchFlights");
+        var liveSchema = tool.ProtocolTool.InputSchema.GetRawText();
+
+        if (!File.Exists(SnapshotPath))
+        {
+            // First run: approve and write the snapshot.
+            Directory.CreateDirectory(Path.GetDirectoryName(SnapshotPath)!);
+            await File.WriteAllTextAsync(SnapshotPath, liveSchema);
+            return;
+        }
+
+        var approvedSchema = await File.ReadAllTextAsync(SnapshotPath);
+        var approvedRequired = ExtractRequiredFields(approvedSchema);
+        var liveRequired = ExtractRequiredFields(liveSchema);
+
+        var addedFields = liveRequired.Except(approvedRequired).ToList();
+        Assert.Empty(addedFields);
+
+        var removedFields = approvedRequired.Except(liveRequired).ToList();
+        Assert.Empty(removedFields);
+    }
+
+    [Fact]
+    public async Task SearchFlights_required_field_count_has_not_increased()
+    {
+        var tools = await _client!.ListToolsAsync();
+        var tool = tools.Single(t => t.Name == "SearchFlights");
+        var liveRequired = ExtractRequiredFields(tool.ProtocolTool.InputSchema.GetRawText());
+
+        // Any increase in required fields is a breaking change for existing clients.
+        Assert.True(liveRequired.Count <= 3,
+            $"SearchFlights now requires {liveRequired.Count} fields. " +
+            "Adding required fields breaks existing clients. Increment the tool version instead.");
+    }
+
+    private static IReadOnlyList<string> ExtractRequiredFields(string schemaJson)
+    {
+        using var doc = JsonDocument.Parse(schemaJson);
+        if (!doc.RootElement.TryGetProperty("required", out var required))
+            return [];
+
+        return required
+            .EnumerateArray()
+            .Select(e => e.GetString() ?? string.Empty)
+            .ToList();
+    }
+}

@@ -1,0 +1,43 @@
+// Chapter 3 — Section 3.1
+// Minimal FlightsMcpServer configured with stdio transport for local verification.
+// Use this pattern during early development before switching to HTTP transport for Docker.
+
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using ModelContextProtocol.Server;
+using System.ComponentModel;
+using TravelBooking.CodeSamples.Shared;
+
+var builder = Host.CreateApplicationBuilder(args);
+
+builder.Services
+    .AddMcpServer()
+    .WithStdioServerTransport()
+    .WithTools<FlightTools>();
+
+// Log to stderr so that stdout remains clean for the stdio protocol stream.
+builder.Logging.AddConsole(options =>
+    options.LogToStandardErrorThreshold = LogLevel.Trace);
+
+await builder.Build().RunAsync();
+
+// -----------------------------------------------------------------------
+// Tool class — kept in the same file here for brevity.
+// In the real solution, FlightTools lives in its own file.
+// -----------------------------------------------------------------------
+
+[McpServerToolType]
+public class FlightTools(IFlightSearchService flights)
+{
+    [McpServerTool, Description("Search available flights between two airports on a given date.")]
+    public async Task<FlightSearchResult> SearchFlightsAsync(
+        [Description("IATA origin airport code, e.g. LHR for London Heathrow.")] string origin,
+        [Description("IATA destination airport code, e.g. JFK for New York.")] string destination,
+        [Description("Departure date in ISO 8601 format, e.g. 2026-06-15.")] string date,
+        CancellationToken ct = default)
+    {
+        var departureDate = DateOnly.Parse(date);
+        return await flights.SearchAsync(origin, destination, departureDate, ct);
+    }
+}

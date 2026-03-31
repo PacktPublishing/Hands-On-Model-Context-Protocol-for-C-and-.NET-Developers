@@ -1,0 +1,56 @@
+# Chapter 2: MCP Fundamentals: Protocol, Roles, and Capabilities
+
+## Overview
+
+A practical tour of the MCP specification covering the JSON-RPC 2.0 message envelope, transport options (stdio and HTTP/SSE), capability descriptors for tools, resources, and prompts, the full request/response lifecycle, and versioning strategies. Every concept is grounded in C# code drawn from the official SDK.
+
+## Section headings
+
+1. Roles and message flows
+2. Capability contracts
+3. Tools and resources
+4. Versioning and compatibility
+
+## Skills
+
+- Trace a full MCP request/response stream
+- Author clear capability schemas
+- Model tool and resource lifecycles
+- Plan non-breaking capability evolution
+
+## Code samples
+
+| File | Section | Description |
+|------|---------|-------------|
+| `code/ch02_1_search_flights_contract_tests.cs` | 2.2.5 | Contract tests for `SearchFlightsTool` using `McpClient.CreateAsync` with stdio transport |
+| `code/ch02_2_book_flight_tool.cs` | 2.3.1 | `BookFlightTool` with booking confirmation and business-level error handling |
+| `code/ch02_3_itinerary_resource_handler.cs` | 2.3.2 | Dynamic resource handler for `itinerary://booking/{reference}` URI template |
+| `code/ch02_4_itinerary_summary_prompt.cs` | 2.3.3 | `ItinerarySummaryPrompt` returning two-message prompt with injected booking data |
+| `code/ch02_5_search_flights_deprecation.cs` | 2.4.3 | Deprecated `SearchFlights_v1` alongside current `SearchFlights` using wrapper delegation |
+| `code/ch02_6_schema_compatibility_tests.cs` | 2.4.5 | Snapshot-based backward-compatibility tests for tool schemas |
+
+## Running the samples
+
+```bash
+cd code
+dotnet run
+```
+
+Contract tests (ch02_1, ch02_6) require a running FlightsServer. Start it first:
+
+```bash
+cd ../Chapter03/code
+dotnet run
+```
+
+Then in a second terminal:
+
+```bash
+cd ../Chapter02/code
+dotnet test
+```
+
+## Further reading
+
+- MCP specification — roles and transports: https://modelcontextprotocol.io/docs/concepts/architecture
+- JSON Schema reference: https://json-schema.org/
