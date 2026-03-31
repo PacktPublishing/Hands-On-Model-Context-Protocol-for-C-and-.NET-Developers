@@ -1,0 +1,43 @@
+// Chapter 3 — Section 3.3
+// FlightsMcpServer reconfigured for HTTP/Streamable HTTP transport.
+// Required for Docker Compose orchestration: containers cannot share stdin/stdout streams.
+
+using Microsoft.Extensions.DependencyInjection;
+using ModelContextProtocol.Server;
+using System.ComponentModel;
+using TravelBooking.CodeSamples.Shared;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .AddMcpServer()
+    .WithHttpTransport()
+    .WithTools<FlightToolsHttp>();
+
+var app = builder.Build();
+
+// MapMcp registers the MCP endpoint at the given path prefix.
+// The Inspector connects to http://localhost:5001/mcp in HTTP mode.
+app.MapMcp("/mcp");
+
+await app.RunAsync();
+
+// -----------------------------------------------------------------------
+// Tool class is identical to the stdio version — transport is independent
+// of capability registration. Only Program.cs changes between the two.
+// -----------------------------------------------------------------------
+
+[McpServerToolType]
+public class FlightToolsHttp(IFlightSearchService flights)
+{
+    [McpServerTool, Description("Search available flights between two airports on a given date.")]
+    public async Task<FlightSearchResult> SearchFlightsAsync(
+        [Description("IATA origin airport code, e.g. LHR for London Heathrow.")] string origin,
+        [Description("IATA destination airport code, e.g. JFK for New York.")] string destination,
+        [Description("Departure date in ISO 8601 format, e.g. 2026-06-15.")] string date,
+        CancellationToken ct = default)
+    {
+        var departureDate = DateOnly.Parse(date);
+        return await flights.SearchAsync(origin, destination, departureDate, ct);
+    }
+}

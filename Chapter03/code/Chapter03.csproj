@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>TravelBooking.Chapter03</RootNamespace>
+    <AssemblyName>TravelBooking.Chapter03</AssemblyName>
+    <!-- Disable Central Package Management for this standalone example -->
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Exclude .example files from compilation - they are reference documentation only -->
+    <Compile Remove="**\*.example" />
+    <None Include="**\*.example" />
+
+    <!-- Exclude reference snippet files - they are incomplete examples for the book -->
+    <Compile Remove="ch03_3_minimal_server_program.cs" />
+    <Compile Remove="ch03_4_flight_tools_first_tool.cs" />
+    <Compile Remove="ch03_5_flight_resources_first_resource.cs" />
+    <None Include="ch03_3_minimal_server_program.cs" />
+    <None Include="ch03_4_flight_tools_first_tool.cs" />
+    <None Include="ch03_5_flight_resources_first_resource.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\ModelContextProtocol\ModelContextProtocol.csproj" />
+    <ProjectReference Include="..\..\..\src\ModelContextProtocol.AspNetCore\ModelContextProtocol.AspNetCore.csproj" />
+  </ItemGroup>
+
+</Project>

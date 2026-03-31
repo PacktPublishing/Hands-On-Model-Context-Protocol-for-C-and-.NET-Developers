@@ -1,0 +1,93 @@
+// Chapter 2 - Section 2.2.5
+// Contract tests for SearchFlightsTool: verify it is registered, has the expected schema,
+// and that required fields include "origin", "destination", and "date".
+// Uses McpClient.CreateAsync with StdioClientTransport to connect to the live Flights server.
+
+using ModelContextProtocol.Client;
+using ModelContextProtocol.Protocol;
+using System.Text.Json;
+using Xunit;
+
+namespace TravelBooking.ContractTests;
+
+public sealed class SearchFlightsContractTests : IAsyncLifetime
+{
+    private McpClient? _client;
+
+    public async Task InitializeAsync()
+    {
+        var transport = new StdioClientTransport(new StdioClientTransportOptions
+        {
+            Command = "dotnet",
+            Arguments = ["run", "--project", "src/FlightsServer", "--no-build"],
+            Name = "FlightsServer"
+        });
+
+        _client = await McpClient.CreateAsync(transport);
+    }
+
+    public async Task DisposeAsync()
+    {
+        if (_client is not null)
+            await _client.DisposeAsync();
+    }
+
+    [Fact]
+    public async Task SearchFlights_tool_is_registered()
+    {
+        var tools = await _client!.ListToolsAsync();
+
+        var searchTool = tools.FirstOrDefault(t => t.Name == "SearchFlights");
+        Assert.NotNull(searchTool);
+    }
+
+    [Fact]
+    public async Task SearchFlights_schema_includes_required_fields()
+    {
+        var tools = await _client!.ListToolsAsync();
+        var tool = tools.Single(t => t.Name == "SearchFlights");
+
+        using var doc = JsonDocument.Parse(tool.ProtocolTool.InputSchema.GetRawText());
+        var required = doc.RootElement
+            .GetProperty("required")
+            .EnumerateArray()
+            .Select(e => e.GetString())
+            .ToHashSet();
+
+        Assert.Contains("origin", required);
+        Assert.Contains("destination", required);
+        Assert.Contains("date", required);
+    }
+
+    [Fact]
+    public async Task SearchFlights_returns_results_for_valid_input()
+    {
+        var tools = await _client!.ListToolsAsync();
+        var tool = tools.Single(t => t.Name == "SearchFlights");
+
+        var result = await tool.CallAsync(new Dictionary<string, object?>
+        {
+            ["origin"] = "LHR",
+            ["destination"] = "JFK",
+            ["date"] = "2026-06-15"
+        });
+
+        Assert.NotNull(result);
+        Assert.True(result.Content.Count > 0);
+    }
+
+    [Fact]
+    public async Task SearchFlights_schema_has_property_descriptions()
+    {
+        var tools = await _client!.ListToolsAsync();
+        var tool = tools.Single(t => t.Name == "SearchFlights");
+
+        using var doc = JsonDocument.Parse(tool.ProtocolTool.InputSchema.GetRawText());
+        var properties = doc.RootElement.GetProperty("properties");
+
+        Assert.True(properties.GetProperty("origin").TryGetProperty("description", out _),
+            "origin parameter must have a description");
+        Assert.True(properties.GetProperty("destination").TryGetProperty("description", out _),
+            "destination parameter must have a description");
+    }
+}
