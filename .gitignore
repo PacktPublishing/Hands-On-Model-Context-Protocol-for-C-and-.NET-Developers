@@ -1,0 +1,40 @@
+## .NET / C#
+
+# Build results
+bin/
+obj/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docobj
+
+# Visual Studio
+.vs/
+*.rsuser
+
+# Rider
+.idea/
+
+# dotnet publish / test output
+publish/
+TestResults/
+
+# Environment / secrets
+*.env
+appsettings.*.json
+!appsettings.Development.json
+
+# OS
+.DS_Store
+Thumbs.db
