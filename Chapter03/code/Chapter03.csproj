@@ -26,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\ModelContextProtocol\ModelContextProtocol.csproj" />
-    <ProjectReference Include="..\..\..\src\ModelContextProtocol.AspNetCore\ModelContextProtocol.AspNetCore.csproj" />
+    <ProjectReference Include="ModelContextProtocol" Version="1.2.0" />
+    <ProjectReference Include="ModelContextProtocol.AspNetCore" Version="1.2.0" />
   </ItemGroup>
 
 </Project>
