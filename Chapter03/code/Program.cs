@@ -99,16 +99,33 @@ static async Task RunHttpServerAsync(string[] args)
 
     var builder = WebApplication.CreateBuilder(args);
 
+    // Force port 5001 - bind to all interfaces so MCP Inspector can connect
+    builder.WebHost.UseUrls("http://0.0.0.0:5001");
+
     // Register mock service
     builder.Services.AddSingleton<IFlightSearchService, MockFlightSearchService>();
+
+    // Add CORS so browser-based MCP Inspector can connect
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+        });
+    });
 
     // Configure MCP server with HTTP transport
     builder.Services
         .AddMcpServer()
-        .WithHttpTransport()
+        .WithHttpTransport(options => options.Stateless = true)
         .WithTools<FlightTools>();
 
     var app = builder.Build();
+
+    // Enable CORS - must be before MapMcp
+    app.UseCors();
 
     // MapMcp registers the MCP endpoint at /mcp
     app.MapMcp("/mcp");
@@ -118,6 +135,7 @@ static async Task RunHttpServerAsync(string[] args)
     {
         Console.WriteLine("✓ HTTP server ready!");
         Console.WriteLine("  Endpoint: http://localhost:5001/mcp");
+        Console.WriteLine("  CORS: Enabled (any origin)");
         Console.WriteLine("  Press Ctrl+C to stop");
         Console.WriteLine();
     });
