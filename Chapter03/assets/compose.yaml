@@ -1,0 +1,52 @@
+services:
+  flights-mcp:
+    build:
+      context: .
+      dockerfile: src/FlightsServer/Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Urls=http://0.0.0.0:5001
+    networks:
+      - travel-booking
+
+  hotels-mcp:
+    build:
+      context: .
+      dockerfile: src/HotelsServer/Dockerfile
+    ports:
+      - "5002:5002"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Urls=http://0.0.0.0:5002
+    networks:
+      - travel-booking
+
+  payments-mcp:
+    build:
+      context: .
+      dockerfile: src/PaymentsServer/Dockerfile
+    ports:
+      - "5003:5003"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Urls=http://0.0.0.0:5003
+    networks:
+      - travel-booking
+
+  itinerary-mcp:
+    build:
+      context: .
+      dockerfile: src/ItineraryServer/Dockerfile
+    ports:
+      - "5004:5004"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Urls=http://0.0.0.0:5004
+    networks:
+      - travel-booking
+
+networks:
+  travel-booking:
+    driver: bridge
