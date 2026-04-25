@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch FlightsServer",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/FlightsServer/bin/Debug/net9.0/FlightsServer.dll",
+      "cwd": "${workspaceFolder}/src/FlightsServer",
+      "env": { "ASPNETCORE_ENVIRONMENT": "Development" }
+    }
+  ]
+}

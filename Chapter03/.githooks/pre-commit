@@ -1,0 +1,10 @@
+#!/bin/sh
+echo "Running MCP schema compatibility tests..."
+dotnet test TravelBooking.sln \
+  --filter "FullyQualifiedName~SchemaCompatibility" \
+  --logger "console;verbosity=quiet" \
+  --no-build
+if [ $? -ne 0 ]; then
+  echo "Schema compatibility tests failed. Commit aborted."
+  exit 1
+fi
