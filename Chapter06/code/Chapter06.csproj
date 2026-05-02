@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,12 +7,36 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>TravelBooking.Chapter06</RootNamespace>
     <AssemblyName>TravelBooking.Chapter06</AssemblyName>
+    <!-- Disable Central Package Management for this standalone example -->
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ModelContextProtocol" Version="0.1.0-preview.10" />
-    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="0.1.0-preview.10" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+    <!-- Exclude reference snippet files — they are verbatim chapter listings.
+         The seven ch06_*.cs files contain partial classes, overlapping record
+         definitions, and external dependencies (BenchmarkDotNet, FluentValidation
+         project layouts) that cannot compile together as a single project.
+         The runnable consolidation lives in Validators.cs, Sanitisation.cs, and
+         DomainModels.cs; the runnable tests live in ../tests/. -->
+    <Compile Remove="ch06_1_search_flights_integration_tests.cs" />
+    <Compile Remove="ch06_2_contract_test_snapshot.cs" />
+    <Compile Remove="ch06_3_search_flights_benchmarks.cs" />
+    <Compile Remove="ch06_4_fault_injection_handler.cs" />
+    <Compile Remove="ch06_5_chaos_tests.cs" />
+    <Compile Remove="ch06_6_search_flights_validator.cs" />
+    <Compile Remove="ch06_7_error_sanitisation_filter.cs" />
+    <None Include="ch06_1_search_flights_integration_tests.cs" />
+    <None Include="ch06_2_contract_test_snapshot.cs" />
+    <None Include="ch06_3_search_flights_benchmarks.cs" />
+    <None Include="ch06_4_fault_injection_handler.cs" />
+    <None Include="ch06_5_chaos_tests.cs" />
+    <None Include="ch06_6_search_flights_validator.cs" />
+    <None Include="ch06_7_error_sanitisation_filter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ModelContextProtocol" Version="1.2.0" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
   </ItemGroup>
 
 </Project>
