@@ -9,7 +9,7 @@ using Polly.CircuitBreaker;
 using Polly.Retry;
 
 builder.Services.AddResiliencePipeline("flights-search", pipeline => pipeline
-    .AddBulkhead(maxConcurrency: 20, maxQueuedActions: 50)
+    .AddConcurrencyLimiter(permitLimit: 20, queuedTasksLimit: 50)
     .AddTimeout(TimeSpan.FromSeconds(8))
     .AddRetry(new RetryStrategyOptions
     {
@@ -26,17 +26,17 @@ builder.Services.AddResiliencePipeline("flights-search", pipeline => pipeline
     }));
 
 builder.Services.AddResiliencePipeline("flights-booking", pipeline => pipeline
-    .AddBulkhead(maxConcurrency: 10, maxQueuedActions: 20)
+    .AddConcurrencyLimiter(permitLimit: 10, queuedTasksLimit: 20)
     .AddTimeout(TimeSpan.FromSeconds(15))
     .AddRetry(new RetryStrategyOptions
     {
-        MaxRetryAttempts = 1,       // one retry only — duplicate bookings are hard to detect
+        MaxRetryAttempts = 1,
         UseJitter = true,
         ShouldHandle = new PredicateBuilder().Handle<HttpRequestException>()
     })
     .AddCircuitBreaker(new CircuitBreakerStrategyOptions
     {
-        FailureRatio = 0.3,         // tighter threshold — booking failures are more severe
+        FailureRatio = 0.3,
         SamplingDuration = TimeSpan.FromSeconds(30),
         MinimumThroughput = 3,
         BreakDuration = TimeSpan.FromSeconds(30)
