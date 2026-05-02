@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,12 +7,23 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>TravelBooking.Chapter04</RootNamespace>
     <AssemblyName>TravelBooking.Chapter04</AssemblyName>
+    <!-- Disable Central Package Management for this standalone example -->
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ModelContextProtocol" Version="0.1.0-preview.10" />
-    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="0.1.0-preview.10" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+    <!-- Exclude reference snippet files — they are incomplete examples for the book -->
+    <Compile Remove="ch04_1_fan_out_parallel_invocation.cs" />
+    <Compile Remove="ch04_2_flight_tools_sla_metadata.cs" />
+    <Compile Remove="ch04_3_flight_search_sla_acceptance_test.cs" />
+    <None Include="ch04_1_fan_out_parallel_invocation.cs" />
+    <None Include="ch04_2_flight_tools_sla_metadata.cs" />
+    <None Include="ch04_3_flight_search_sla_acceptance_test.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ModelContextProtocol" Version="1.2.0" />
+    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="1.2.0" />
   </ItemGroup>
 
 </Project>
