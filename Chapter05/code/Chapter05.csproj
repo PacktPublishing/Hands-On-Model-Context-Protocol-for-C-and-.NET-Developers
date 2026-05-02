@@ -7,12 +7,55 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>TravelBooking.Chapter05</RootNamespace>
     <AssemblyName>TravelBooking.Chapter05</AssemblyName>
+    <!-- Disable Central Package Management for this standalone example -->
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ModelContextProtocol" Version="0.1.0-preview.10" />
-    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="0.1.0-preview.10" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+    <!-- Exclude reference snippet files — they are incomplete examples for the book.
+         Each ch05_*.cs file reproduces a single section of the chapter (partial classes,
+         top-level builder fragments, overlapping record types). They are not intended
+         to compile as a single unit; the full FlightsServer implementation is the
+         subject of subsequent chapters. -->
+    <Compile Remove="ch05_1_program_minimal_setup.cs" />
+    <Compile Remove="ch05_2_di_env_idempotency_store.cs" />
+    <Compile Remove="ch05_3_configuration_options_binding.cs" />
+    <Compile Remove="ch05_4_airline_api_health_check.cs" />
+    <Compile Remove="ch05_5_flight_tools_registration.cs" />
+    <Compile Remove="ch05_6_flight_models.cs" />
+    <Compile Remove="ch05_7_passenger_input_validation.cs" />
+    <Compile Remove="ch05_8_capability_validation_service.cs" />
+    <Compile Remove="ch05_9_flight_tools_versioned.cs" />
+    <Compile Remove="ch05_10_search_flights_streaming.cs" />
+    <Compile Remove="ch05_11_book_flight_cancellation.cs" />
+    <Compile Remove="ch05_12_book_flight_idempotency.cs" />
+    <Compile Remove="ch05_13_mcp_tool_base_errors.cs" />
+    <Compile Remove="ch05_14_opentelemetry_setup.cs" />
+    <Compile Remove="ch05_15_search_flights_tracing.cs" />
+    <Compile Remove="ch05_16_polly_resilience_pipelines.cs" />
+    <Compile Remove="ch05_17_circuit_breaker_test.cs" />
+    <None Include="ch05_1_program_minimal_setup.cs" />
+    <None Include="ch05_2_di_env_idempotency_store.cs" />
+    <None Include="ch05_3_configuration_options_binding.cs" />
+    <None Include="ch05_4_airline_api_health_check.cs" />
+    <None Include="ch05_5_flight_tools_registration.cs" />
+    <None Include="ch05_6_flight_models.cs" />
+    <None Include="ch05_7_passenger_input_validation.cs" />
+    <None Include="ch05_8_capability_validation_service.cs" />
+    <None Include="ch05_9_flight_tools_versioned.cs" />
+    <None Include="ch05_10_search_flights_streaming.cs" />
+    <None Include="ch05_11_book_flight_cancellation.cs" />
+    <None Include="ch05_12_book_flight_idempotency.cs" />
+    <None Include="ch05_13_mcp_tool_base_errors.cs" />
+    <None Include="ch05_14_opentelemetry_setup.cs" />
+    <None Include="ch05_15_search_flights_tracing.cs" />
+    <None Include="ch05_16_polly_resilience_pipelines.cs" />
+    <None Include="ch05_17_circuit_breaker_test.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ModelContextProtocol" Version="1.2.0" />
+    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="1.2.0" />
   </ItemGroup>
 
 </Project>
