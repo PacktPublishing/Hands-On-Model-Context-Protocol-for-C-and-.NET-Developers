@@ -63,14 +63,13 @@ All code samples target **.NET 9** and use the **official `ModelContextProtocol`
 ## Repository structure
 
 ```
-HandsOnMCPCSharp/
+Hands-On-Model-Context-Protocol-for-C-and-.NET-Developers/
 ├── README.md                  ← this file
 ├── Chapter01/
 │   ├── README.md              ← chapter overview and running instructions
 │   ├── code/                  ← runnable .NET projects
 │   └── solutions/             ← quiz answers
-├── Chapter02/ … Chapter12/    ← same structure
-└── TravelBooking.sln          ← solution file linking all chapter projects
+└── Chapter02/ … Chapter12/    ← same structure
 ```
 
 Each `code/` folder contains a self-contained .NET project with its own `.csproj` and `Program.cs`.
@@ -80,9 +79,8 @@ Each `code/` folder contains a self-contained .NET project with its own `.csproj
 ## Getting started
 
 ```bash
-git clone https://github.com/PacktPublishing/Hands-On-MCP-CSharp.git
-cd Hands-On-MCP-CSharp
-dotnet restore TravelBooking.sln
+git clone https://github.com/PacktPublishing/Hands-On-Model-Context-Protocol-for-C-and-.NET-Developers.git
+cd Hands-On-Model-Context-Protocol-for-C-and-.NET-Developers
 ```
 
 To run a specific chapter project:

@@ -1,18 +1,40 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>TravelBooking.Chapter07</RootNamespace>
-    <AssemblyName>TravelBooking.Chapter07</AssemblyName>
+	<OutputType>Exe</OutputType>
+	<TargetFramework>net9.0</TargetFramework>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<RootNamespace>TravelBooking.Chapter07</RootNamespace>
+	<AssemblyName>TravelBooking.Chapter07</AssemblyName>
+	<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ModelContextProtocol" Version="0.1.0-preview.10" />
-    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="0.1.0-preview.10" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+	<!-- Reference snippet files (ch07_*.cs) are verbatim chapter listings.
+		 They contain overlapping type definitions, partial classes, and
+		 external dependencies (Polly, Redis, OpenTelemetry, Azure SDKs,
+		 Blazor / MAUI, Dapr, Aspire) that cannot compile together as a
+		 single project. They are excluded from compilation and exist as
+		 reference material. -->
+    <Compile Remove="ch07_1_mcp_client_connection.cs" />
+    <Compile Remove="ch07_2_capability_discovery.cs" />
+    <Compile Remove="ch07_3_progress_notifications.cs" />
+    <Compile Remove="ch07_4_resource_subscription.cs" />
+    <Compile Remove="ch07_5_workflow_state_machine.cs" />
+    <Compile Remove="ch07_6_session_state_cache.cs" />
+    <Compile Remove="ch07_7_client_polly_pipeline.cs" />
+    <None Include="ch07_1_mcp_client_connection.cs" />
+    <None Include="ch07_2_capability_discovery.cs" />
+    <None Include="ch07_3_progress_notifications.cs" />
+    <None Include="ch07_4_resource_subscription.cs" />
+    <None Include="ch07_5_workflow_state_machine.cs" />
+    <None Include="ch07_6_session_state_cache.cs" />
+    <None Include="ch07_7_client_polly_pipeline.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="ModelContextProtocol" Version="1.2.0" />
   </ItemGroup>
 
 </Project>
