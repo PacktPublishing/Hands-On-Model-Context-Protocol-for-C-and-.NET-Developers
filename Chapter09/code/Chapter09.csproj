@@ -1,54 +1,51 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-	<OutputType>Exe</OutputType>
-	<TargetFramework>net9.0</TargetFramework>
-	<Nullable>enable</Nullable>
-	<ImplicitUsings>enable</ImplicitUsings>
-	<RootNamespace>TravelBooking.Chapter09</RootNamespace>
-	<AssemblyName>TravelBooking.Chapter09</AssemblyName>
-	<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>TravelBooking.Chapter09</RootNamespace>
+		<AssemblyName>TravelBooking.Chapter09</AssemblyName>
+		<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+	</PropertyGroup>
 
-  <ItemGroup>
-	<!-- Reference snippet files (ch09_*.cs) are verbatim chapter listings.
-		 They contain overlapping type definitions, partial classes, and
-		 external dependencies (Polly, Redis, OpenTelemetry, Azure SDKs,
-		 Blazor / MAUI, Dapr, Aspire) that cannot compile together as a
-		 single project. They are excluded from compilation and exist as
-		 reference material. -->
-    <Compile Remove="ch09_1_host_configuration.cs" />
-    <Compile Remove="ch09_10_connectivity_service.cs" />
-    <Compile Remove="ch09_11_offline_retry_queue.cs" />
-    <Compile Remove="ch09_12_ux_metrics.cs" />
-    <Compile Remove="ch09_13_traced_streaming_component.cs" />
-    <Compile Remove="ch09_14_native_approval_provider.cs" />
-    <Compile Remove="ch09_2_streaming_search_component.cs" />
-    <Compile Remove="ch09_3_cancellation_component.cs" />
-    <Compile Remove="ch09_4_mcp_error_handler.cs" />
-    <Compile Remove="ch09_5_mcp_job_queue.cs" />
-    <Compile Remove="ch09_6_job_processor_service.cs" />
-    <Compile Remove="ch09_7_job_status_display.cs" />
-    <Compile Remove="ch09_8_retry_processor.cs" />
-    <Compile Remove="ch09_9_caching_mcp_client.cs" />
-    <None Include="ch09_1_host_configuration.cs" />
-    <None Include="ch09_10_connectivity_service.cs" />
-    <None Include="ch09_11_offline_retry_queue.cs" />
-    <None Include="ch09_12_ux_metrics.cs" />
-    <None Include="ch09_13_traced_streaming_component.cs" />
-    <None Include="ch09_14_native_approval_provider.cs" />
-    <None Include="ch09_2_streaming_search_component.cs" />
-    <None Include="ch09_3_cancellation_component.cs" />
-    <None Include="ch09_4_mcp_error_handler.cs" />
-    <None Include="ch09_5_mcp_job_queue.cs" />
-    <None Include="ch09_6_job_processor_service.cs" />
-    <None Include="ch09_7_job_status_display.cs" />
-    <None Include="ch09_8_retry_processor.cs" />
-    <None Include="ch09_9_caching_mcp_client.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<!-- Reference snippet files (ch09_*.cs) are verbatim chapter listings for
+				 the agentic workflow chapter. They contain overlapping partial types
+				 (WorkflowState hierarchy, planner/executor agents, workflow store)
+				 and depend on IDistributedCache, ILogger<T>, and the MCP client, so
+				 they cannot compile together as a single project. They are excluded
+				 from compilation and exist as reference material read alongside the
+				 chapter text; the runnable consolidation is in Demos.cs. -->
+		<Compile Remove="ch09_1_workflow_state.cs" />
+		<Compile Remove="ch09_2_travel_plan.cs" />
+		<Compile Remove="ch09_3_travel_planner_agent.cs" />
+		<Compile Remove="ch09_4_travel_executor_agent.cs" />
+		<Compile Remove="ch09_5_search_compare_step.cs" />
+		<Compile Remove="ch09_6_approval_checkpoint.cs" />
+		<Compile Remove="ch09_7_booking_step.cs" />
+		<Compile Remove="ch09_8_workflow_state_store.cs" />
+		<Compile Remove="ch09_9_workflow_resumer.cs" />
+		<Compile Remove="ch09_10_workflow_budget.cs" />
+		<Compile Remove="ch09_11_transition_guard.cs" />
+		<Compile Remove="ch09_12_sustained_error_guard.cs" />
+		<None Include="ch09_1_workflow_state.cs" />
+		<None Include="ch09_2_travel_plan.cs" />
+		<None Include="ch09_3_travel_planner_agent.cs" />
+		<None Include="ch09_4_travel_executor_agent.cs" />
+		<None Include="ch09_5_search_compare_step.cs" />
+		<None Include="ch09_6_approval_checkpoint.cs" />
+		<None Include="ch09_7_booking_step.cs" />
+		<None Include="ch09_8_workflow_state_store.cs" />
+		<None Include="ch09_9_workflow_resumer.cs" />
+		<None Include="ch09_10_workflow_budget.cs" />
+		<None Include="ch09_11_transition_guard.cs" />
+		<None Include="ch09_12_sustained_error_guard.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-	<PackageReference Include="ModelContextProtocol" Version="1.2.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="ModelContextProtocol" Version="1.2.0" />
+	</ItemGroup>
 
 </Project>
