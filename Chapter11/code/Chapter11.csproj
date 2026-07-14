@@ -12,23 +12,25 @@
 
   <ItemGroup>
 	<!-- Reference snippet files (ch11_*.cs) are verbatim chapter listings.
-		 They contain overlapping type definitions, partial classes, and
-		 external dependencies (Polly, Redis, OpenTelemetry, Azure SDKs,
-		 Blazor / MAUI, Dapr, Aspire) that cannot compile together as a
+		 They contain overlapping partial types and depend on IMcpClient /
+		 IMcpServer / ILogger / xUnit, so they cannot compile together as a
 		 single project. They are excluded from compilation and exist as
-		 reference material. -->
-    <Compile Remove="ch11_1_health_check_endpoints.cs" />
-    <Compile Remove="ch11_2_capability_library.cs" />
-    <Compile Remove="ch11_3_functions_isolated_host.cs" />
-    <Compile Remove="ch11_4_durable_booking_orchestrator.cs" />
-    <Compile Remove="ch11_5_dapr_integration.cs" />
-    <Compile Remove="ch11_6_automated_rollback.cs" />
-    <None Include="ch11_1_health_check_endpoints.cs" />
-    <None Include="ch11_2_capability_library.cs" />
-    <None Include="ch11_3_functions_isolated_host.cs" />
-    <None Include="ch11_4_durable_booking_orchestrator.cs" />
-    <None Include="ch11_5_dapr_integration.cs" />
-    <None Include="ch11_6_automated_rollback.cs" />
+		 reference material read alongside the chapter text; the runnable
+		 consolidation is in Demos.cs. -->
+    <Compile Remove="ch11_1_in_process_test_server.cs" />
+    <Compile Remove="ch11_2_tool_call_recorder.cs" />
+    <Compile Remove="ch11_3_golden_test_harness.cs" />
+    <Compile Remove="ch11_4_tool_call_evaluator.cs" />
+    <Compile Remove="ch11_5_fault_injection_server.cs" />
+    <Compile Remove="ch11_6_adversarial_tests.cs" />
+    <Compile Remove="ch11_7_prompt_regression_harness.cs" />
+    <None Include="ch11_1_in_process_test_server.cs" />
+    <None Include="ch11_2_tool_call_recorder.cs" />
+    <None Include="ch11_3_golden_test_harness.cs" />
+    <None Include="ch11_4_tool_call_evaluator.cs" />
+    <None Include="ch11_5_fault_injection_server.cs" />
+    <None Include="ch11_6_adversarial_tests.cs" />
+    <None Include="ch11_7_prompt_regression_harness.cs" />
   </ItemGroup>
 
   <ItemGroup>

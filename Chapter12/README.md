@@ -50,4 +50,4 @@ rather than re-introducing local copies.
 
 ## Solutions
 
-Quiz answers are in `solutions/solution-quiz.md`.
+Quiz answers are in `solutions/solution-quiz-answers.md`.

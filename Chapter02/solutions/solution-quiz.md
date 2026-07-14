@@ -1,16 +1,11 @@
-# Chapter 2 — Quiz answers
+# Chapter 2 — Quiz questions
 
-1. **What are the three MCP roles and what does each one do?**
-   The host initiates sessions, manages the LLM, and decides which servers to connect. The client is a protocol component embedded in the host that opens and maintains connections to servers. The server exposes tools, resources, and prompts that clients discover and invoke.
+1. A host maintains three concurrent MCP server connections. How many client instances are active, and what does each one own?
 
-2. **What transport should you use for a server embedded in the same process as the host?**
-   stdio transport. Stdin and stdout are already shared when running in the same process, so no network binding is needed and there is no port to manage.
+2. A client sends an `initialize` request with `"protocolVersion": "2025-03-26"`. The server responds with `"protocolVersion": "2024-11-05"`. What should the client do next, and why?
 
-3. **What is the difference between a tool and a resource in MCP?**
-   A tool is a callable action — it accepts parameters, executes logic, and returns a result. A resource is a readable data source identified by a URI; the client fetches it rather than invoking it.
+3. A `tools/call` response carries `isError: true` in the `result` field. A colleague triggers a transport-level retry. Explain what is wrong with this approach.
 
-4. **Why does adding a required parameter to an existing tool constitute a breaking change?**
-   Existing clients have already been trained or configured to invoke the tool without that parameter. The server will reject their call because the required field is absent, breaking all existing callers without any indication that the tool signature changed.
+4. You need to add a `maxStops` filter to an existing `SearchFlights` tool. Classify this change as breaking or non-breaking, and describe what you must do to keep existing clients working.
 
-5. **What pattern keeps an old tool available while a new version is introduced?**
-   Register both the current tool (no suffix) and the deprecated version with a `_v1` suffix. The deprecated version maps old parameter names to new ones and delegates to the current implementation. Remove the deprecated version only after confirming no active clients invoke it.
+5. A `resources/read` response for URI `itinerary://booking/B-042` takes 12 seconds on average. A colleague suggests remodeling it as a `tools/call` to support progress notifications. Evaluate this suggestion against the tool and resource selection rules.

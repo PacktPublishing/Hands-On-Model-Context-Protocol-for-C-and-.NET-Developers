@@ -219,7 +219,7 @@ Press `Ctrl+Shift+B` to run the build task. The workspace recommends the C# Dev 
 
 ## Solutions
 
-Quiz answers are in `solutions/solution-quiz.md`.
+Quiz answers are in `solutions/solution-quiz-answers.md`.
 
 ---
 
