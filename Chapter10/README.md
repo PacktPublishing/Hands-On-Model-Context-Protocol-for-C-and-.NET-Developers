@@ -1,8 +1,9 @@
-# Chapter 10: Security and Governance: AuthZ, Secrets, Azure API Management
+# Chapter 10: Multi-agent coordination with MCP
 
 ## Overview
 
 Code samples for Chapter 10.
+See the chapter text in
 `d:/gitbook/ModelContextProtocol/chapters/Ch10.md` for full explanations.
 
 This chapter follows the same standards used by the rest of the
@@ -42,12 +43,14 @@ The full runnable MCP infrastructure already lives in earlier chapters:
 - `../Chapter06/code` -- validation and error sanitisation
   (`DomainModels.cs`, `Validators.cs`, `Sanitisation.cs`) plus the
   xUnit v3 test project in `../Chapter06/tests`
+- `../Chapter09/code` -- workflow state machine, transition guard,
+  workflow budget, sustained-error guard, workflow resumer
 
 When a Chapter 10 snippet references a service such as
-`IFlightSearchService`, `IIdempotencyStore`, validators, or the
-sanitisation filter, prefer the implementations already in Chapters 5 and 6
-rather than re-introducing local copies.
+`IFlightSearchService`, `IIdempotencyStore`, `WorkflowState`, validators,
+or the sanitisation filter, prefer the implementations already in
+Chapters 5, 6, and 9 rather than re-introducing local copies.
 
 ## Solutions
 
-Quiz answers are in `solutions/solution-quiz.md`.
+Quiz answers are in `solutions/solution-quiz-answers.md`.

@@ -170,7 +170,7 @@ chmod +x .githooks/pre-commit
 
 ## Solutions
 
-Quiz answers are in `solutions/solution-quiz.md`.
+Quiz answers are in `solutions/solution-quiz-answers.md`.
 
 ---
 

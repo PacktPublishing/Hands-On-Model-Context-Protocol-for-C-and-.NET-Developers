@@ -1,36 +1,56 @@
-// Chapter 10 -- Security and Governance: AuthZ, Secrets, Azure API Management.
+// Chapter 10 -- Multi-agent coordination with MCP.
+//
+// Runs the ch10_*.cs adaptations from Demos.cs:
+//   1. AgentCoordinator successfully routes a request through the specialist
+//      agents (flight -> hotel -> budget) under budget.
+//   2. Same coordinator escalates when the combined cost exceeds the cap.
+//   3. ConflictResolver picks the cheaper of two competing proposals.
+
 using TravelBooking.Chapter10;
 
-Console.WriteLine("Chapter 10 -- Security and Governance: AuthZ, Secrets, Azure API Management");
+Console.WriteLine("Chapter 10 -- Multi-agent coordination with MCP");
 Console.WriteLine(new string('=', 78));
 
-Console.WriteLine();
-Console.WriteLine("[1] CorrelationIdMiddleware (ch10_7)");
-var middleware = new CorrelationIdMiddlewareDemo(new CorrelationIdGenerator());
-var headers1 = new Dictionary<string, string>();
-var r1 = await middleware.InvokeAsync(headers1, (id, _) => Task.FromResult($"handled with id={id}"));
-Console.WriteLine($"  no incoming id     -> generated {r1.Correlation}");
-Console.WriteLine($"                        downstream result: {r1.Result}");
-
-var headers2 = new Dictionary<string, string> { ["X-Correlation-Id"] = "client-supplied-42" };
-var r2 = await middleware.InvokeAsync(headers2, (id, _) => Task.FromResult($"handled with id={id}"));
-Console.WriteLine($"  incoming id        -> preserved {r2.Correlation}");
+var flight       = new FlightAgent();
+var hotel        = new HotelAgent();
+var escalations  = new EscalationHandler();
 
 Console.WriteLine();
-Console.WriteLine("[2] TenantIsolationGuard (ch10_3)");
-var guard = new TenantIsolationGuard();
-guard.Register(new TenantResource("booking-001", "tenant-A"));
-guard.Register(new TenantResource("booking-002", "tenant-B"));
-var allowed = guard.Read("tenant-A", "booking-001");
-Console.WriteLine($"  same-tenant read   -> ok ({allowed.ResourceId})");
-try
+Console.WriteLine("[1] AgentCoordinator (under budget) -- ch10_2/3/5/6");
+var underBudget  = new AgentCoordinator(flight, hotel, new BudgetCheckerAgent(capUsd: 1200m), escalations);
+var ctx1         = new HandoffContext("sess-001");
+var req1         = new AgentRequest("sess-001", "book-trip",
+					new Dictionary<string, string> { ["origin"] = "LHR", ["destination"] = "AMS", ["nights"] = "3" });
+var result1      = await underBudget.HandleAsync(req1, ctx1);
+foreach (var r in result1.Responses)
+	Console.WriteLine($"  {r.AgentName,-14} success={r.Success} summary={r.Summary}");
+Console.WriteLine($"  coordinator success = {result1.Success}");
+Console.WriteLine($"  handoff trail       = {string.Join(" -> ", ctx1.Trail)}");
+
+Console.WriteLine();
+Console.WriteLine("[2] AgentCoordinator (over budget -> escalation) -- ch10_3/8");
+var overBudget   = new AgentCoordinator(flight, hotel, new BudgetCheckerAgent(capUsd: 500m), escalations);
+var ctx2         = new HandoffContext("sess-002");
+var req2         = new AgentRequest("sess-002", "book-trip",
+					new Dictionary<string, string> { ["origin"] = "LHR", ["destination"] = "AMS", ["nights"] = "5" });
+var result2      = await overBudget.HandleAsync(req2, ctx2);
+foreach (var r in result2.Responses)
+	Console.WriteLine($"  {r.AgentName,-14} success={r.Success} escalate={r.RequiresEscalation} summary={r.Summary}");
+Console.WriteLine($"  coordinator success = {result2.Success}");
+if (result2.Escalation is { } e)
+	Console.WriteLine($"  escalation queued   = [{e.At:HH:mm:ssZ}] {e.FromAgent}: {e.Reason}");
+Console.WriteLine($"  escalation queue    = {escalations.Count}");
+
+Console.WriteLine();
+Console.WriteLine("[3] ConflictResolver picks the cheaper proposal -- ch10_7");
+var resolver = new ConflictResolver();
+var pick = resolver.Resolve(new[]
 {
-	guard.Read("tenant-A", "booking-002");
-}
-catch (CrossTenantAccessException ex)
-{
-	Console.WriteLine($"  cross-tenant read  -> blocked: {ex.Message}");
-}
+	new Proposal("flight-agent-A", "AF001 direct",  512m),
+	new Proposal("flight-agent-B", "BA010 direct",  389m),
+	new Proposal("flight-agent-C", "KL022 1-stop",  445m),
+});
+Console.WriteLine($"  winner              = {pick.AgentName} '{pick.Description}' @ {pick.PriceUsd:N0} USD");
 
 Console.WriteLine();
 Console.WriteLine("Chapter 10 demo complete.");

@@ -12,25 +12,27 @@
 
   <ItemGroup>
 	<!-- Reference snippet files (ch10_*.cs) are verbatim chapter listings.
-		 They contain overlapping type definitions, partial classes, and
-		 external dependencies (Polly, Redis, OpenTelemetry, Azure SDKs,
-		 Blazor / MAUI, Dapr, Aspire) that cannot compile together as a
+		 They contain overlapping partial types and depend on IMcpClient /
+		 IMcpServer / ILogger / xUnit, so they cannot compile together as a
 		 single project. They are excluded from compilation and exist as
-		 reference material. -->
-    <Compile Remove="ch10_1_entra_jwt_auth_config.cs" />
-    <Compile Remove="ch10_2_capability_authorization.cs" />
-    <Compile Remove="ch10_3_tenant_isolation.cs" />
-    <Compile Remove="ch10_4_keyvault_managed_identity.cs" />
-    <Compile Remove="ch10_5_data_protection_config.cs" />
-    <Compile Remove="ch10_6_secret_rotation_options.cs" />
-    <Compile Remove="ch10_7_correlation_id_middleware.cs" />
-    <None Include="ch10_1_entra_jwt_auth_config.cs" />
-    <None Include="ch10_2_capability_authorization.cs" />
-    <None Include="ch10_3_tenant_isolation.cs" />
-    <None Include="ch10_4_keyvault_managed_identity.cs" />
-    <None Include="ch10_5_data_protection_config.cs" />
-    <None Include="ch10_6_secret_rotation_options.cs" />
-    <None Include="ch10_7_correlation_id_middleware.cs" />
+		 reference material read alongside the chapter text; the runnable
+		 consolidation is in Demos.cs. -->
+    <Compile Remove="ch10_1_agent_contracts.cs" />
+    <Compile Remove="ch10_2_specialist_agents.cs" />
+    <Compile Remove="ch10_3_budget_checker_agent.cs" />
+    <Compile Remove="ch10_4_shared_mcp_resource.cs" />
+    <Compile Remove="ch10_5_agent_coordinator.cs" />
+    <Compile Remove="ch10_6_handoff_context.cs" />
+    <Compile Remove="ch10_7_conflict_resolver.cs" />
+    <Compile Remove="ch10_8_escalation_handler.cs" />
+    <None Include="ch10_1_agent_contracts.cs" />
+    <None Include="ch10_2_specialist_agents.cs" />
+    <None Include="ch10_3_budget_checker_agent.cs" />
+    <None Include="ch10_4_shared_mcp_resource.cs" />
+    <None Include="ch10_5_agent_coordinator.cs" />
+    <None Include="ch10_6_handoff_context.cs" />
+    <None Include="ch10_7_conflict_resolver.cs" />
+    <None Include="ch10_8_escalation_handler.cs" />
   </ItemGroup>
 
   <ItemGroup>
