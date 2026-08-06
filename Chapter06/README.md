@@ -43,7 +43,7 @@ Chapter06/
 │   ├── launch.json                               # Run unit tests (skip Manual)
 │   └── tasks.json                                # Build + test tasks
 ├── Directory.Build.props                         # Solution-wide MSBuild settings
-├── global.json                                   # SDK version pin — 9.0.100
+├── global.json                                   # SDK version pin — 10.0.100
 └── solutions/
     └── solution-quiz.md
 ```
@@ -56,7 +56,7 @@ The seven `ch06_*.cs` files are **verbatim chapter listings** — they reproduce
 
 ## Prerequisites
 
-- .NET SDK 9.0.100 or later (`dotnet --version`)
+- .NET SDK 10.0.100 or later (`dotnet --version`)
 - For the Manual integration tests only: the Chapter 5 project must be built
   (`dotnet build ../../Chapter05/code/Chapter05.csproj`)
 

@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.2.2
+// Chapter 12 — Section 12.2.3
 // Auto-instrumentation middleware that wraps every MCP tool call with
 // standardised span attributes and operation duration recording.
 // TryGetOuterToolExecutionActivity checks whether outer GenAI instrumentation

@@ -6,7 +6,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/FlightsServer/bin/Debug/net9.0/FlightsServer.dll",
+      "program": "${workspaceFolder}/src/FlightsServer/bin/Debug/net10.0/FlightsServer.dll",
       "cwd": "${workspaceFolder}/src/FlightsServer",
       "env": { "ASPNETCORE_ENVIRONMENT": "Development" }
     }

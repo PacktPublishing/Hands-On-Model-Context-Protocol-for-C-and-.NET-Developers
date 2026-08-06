@@ -13,7 +13,7 @@ using TravelBooking.CodeSamples.Shared;
 namespace TravelBooking.Benchmarks;
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net90)]
+[SimpleJob(RuntimeMoniker.Net100)]
 public class SearchFlightsBenchmarks
 {
     private IFlightSearchService _service = null!;

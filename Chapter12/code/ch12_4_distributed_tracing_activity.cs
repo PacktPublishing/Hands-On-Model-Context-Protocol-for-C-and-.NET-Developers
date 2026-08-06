@@ -1,6 +1,6 @@
-// Chapter 12 — Section 12.2.1
+// Chapter 12 — Section 12.2.2
 // Application-level ActivitySource instrumentation for distributed tracing.
-// The SDK's "Experimental.ModelContextProtocol" ActivitySource creates a span
+// The SDK's "ModelContextProtocol" ActivitySource creates a span
 // automatically for the MCP protocol exchange. This file adds a child span
 // around the downstream airline API call within the tool handler, attributing
 // latency to the specific downstream dependency.

@@ -25,7 +25,7 @@ mkdir tests
 cd tests
 
 # Create test project
-dotnet new xunit -n Chapter02.Tests -f net9.0
+dotnet new xunit -n Chapter02.Tests -f net10.0
 
 # Add references
 dotnet add reference ..\..\..\..\src\ModelContextProtocol\ModelContextProtocol.csproj

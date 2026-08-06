@@ -11,7 +11,7 @@
 
 ## About the book
 
-*Hands-On MCP for C# and .NET Developers* teaches you to design, build, validate, and deploy Model Context Protocol servers and clients using the official C# SDK and .NET 9. Through a single Travel Booking reference application — covering flights, hotels, payments, and itineraries — you progress from first-principles MCP concepts through production ASP.NET Core servers, LLM-orchestrated clients, Azure deployment, and end-to-end observability.
+*Hands-On MCP for C# and .NET Developers* teaches you to design, build, validate, and deploy Model Context Protocol servers and clients using the official C# SDK and .NET 10. Through a single Travel Booking reference application — covering flights, hotels, payments, and itineraries — you progress from first-principles MCP concepts through production ASP.NET Core servers, LLM-orchestrated clients, Azure deployment, and end-to-end observability.
 
 Every chapter builds on the previous one. By the end you will have a complete, running system and patterns you can apply to your own domains immediately.
 
@@ -41,35 +41,36 @@ Every chapter builds on the previous one. By the end you will have a complete, r
 | 6 | Validate, Profile, and Harden Your MCP Server | 20–25 |
 | 7 | MCP Clients without LLMs: Streams, State, and Resilience | 20–25 |
 | 8 | LLM-Integrated Clients: Orchestration, Tool Use, and Safety | 20–25 |
-| 9 | UX Integration: Blazor and .NET MAUI, Background Work, and Offline | 20–25 |
-| 10 | Security and Governance: AuthZ, Secrets, Azure API Management | 15–20 |
-| 11 | Cloud Deployment: Azure Functions and Container Apps with CI/CD | 15–20 |
+| 9 | Building agentic workflows with MCP and .NET | 20–25 |
+| 10 | Multi-agent coordination with MCP | 15–20 |
+| 11 | Testing and evaluating MCP agents | 15–20 |
 | 12 | Observability and Scale: Metrics, Tracing, Costs, and Sharding | 15–20 |
 
 ---
 
 ## Requirements
 
-- .NET 9 SDK — https://dotnet.microsoft.com/download
+- .NET 10 SDK — https://dotnet.microsoft.com/download
 - Visual Studio 2022 / VS Code / Rider
 - Docker Desktop (Chapters 3, 11)
 - An MCP-compatible host such as Claude Desktop or VS Code Copilot (Chapter 3 onward)
 - Azure subscription (Chapters 10, 11, 12)
 
-All code samples target **.NET 9** and use the **official `ModelContextProtocol` NuGet package**.
+All code samples target **.NET 10** and use the **official `ModelContextProtocol` NuGet package**.
 
 ---
 
 ## Repository structure
 
 ```
-Hands-On-Model-Context-Protocol-for-C-and-.NET-Developers/
+HandsOnMCPCSharp/
 ├── README.md                  ← this file
 ├── Chapter01/
 │   ├── README.md              ← chapter overview and running instructions
 │   ├── code/                  ← runnable .NET projects
 │   └── solutions/             ← quiz answers
-└── Chapter02/ … Chapter12/    ← same structure
+├── Chapter02/ … Chapter12/    ← same structure
+└── TravelBooking.sln          ← solution file linking all chapter projects
 ```
 
 Each `code/` folder contains a self-contained .NET project with its own `.csproj` and `Program.cs`.
@@ -79,8 +80,9 @@ Each `code/` folder contains a self-contained .NET project with its own `.csproj
 ## Getting started
 
 ```bash
-git clone https://github.com/PacktPublishing/Hands-On-Model-Context-Protocol-for-C-and-.NET-Developers.git
-cd Hands-On-Model-Context-Protocol-for-C-and-.NET-Developers
+git clone https://github.com/PacktPublishing/Hands-On-MCP-CSharp.git
+cd Hands-On-MCP-CSharp
+dotnet restore TravelBooking.sln
 ```
 
 To run a specific chapter project:

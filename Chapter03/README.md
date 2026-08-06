@@ -41,7 +41,7 @@ Chapter03/
 │   ├── launch.json           # FlightsServer debugger config (section 3.4.1)
 │   └── tasks.json            # Build task (section 3.4.1)
 ├── Directory.Build.props     # Solution-wide MSBuild settings (section 3.5.3)
-├── global.json               # SDK pin — minimum 9.0.100, rollForward latestMajor
+├── global.json               # SDK pin — minimum 10.0.100, rollForward latestMajor
 └── solutions/
     └── solution-quiz.md
 ```
@@ -52,20 +52,20 @@ The `code/` files numbered `ch03_3` through `ch03_5` are reference snippets excl
 
 ## Prerequisites
 
-The hardware and general software prerequisites from Chapters 1 and 2 apply here. This chapter upgrades the target runtime to .NET 9 and adds the following tools and packages:
+The hardware and general software prerequisites from Chapters 1 and 2 apply here. This chapter upgrades the target runtime to .NET 10 and adds the following tools and packages:
 
-- **.NET 9 SDK or later** — this chapter targets `net9.0` (verify with `dotnet --version`)
+- **.NET 10 SDK or later** — this chapter targets `net10.0` (verify with `dotnet --version`)
 - **Docker Desktop** with Compose support — for the multi-server stack later in this chapter
 - **Node.js 18 or later** — required to run the MCP Inspector via `npx`
 - **`ModelContextProtocol.AspNetCore`** — for `app.MapMcp()` and HTTP transport
 - **`Microsoft.Extensions.Hosting`** — for generic host lifetime management on console-hosted servers
 
-> **Note:** If you have both .NET 9 and .NET 10 installed, the build automatically uses the latest version (per `global.json` `rollForward: latestMajor`). The project still produces `net9.0` output.
+> **Note:** If you have multiple .NET SDKs installed, the build automatically uses the latest version (per `global.json` `rollForward: latestMajor`). The project targets and produces `net10.0` output.
 
 ### Verify your environment
 
 ```powershell
-dotnet --version          # 9.0.x or 10.0.x
+dotnet --version          # 10.0.x or later
 node --version            # v18+
 docker --version          # Docker engine
 docker compose version    # Compose v2+

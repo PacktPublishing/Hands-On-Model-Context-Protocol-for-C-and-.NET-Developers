@@ -8,7 +8,7 @@ Code samples for Chapter 9. See the chapter text in
 This chapter follows the same standards used by the rest of the
 `HandsOnMCPCSharp` solution:
 
-- Pinned .NET SDK via `global.json` (9.0.100, `rollForward: latestMinor`)
+- Pinned .NET SDK via `global.json` (10.0.100, `rollForward: latestMinor`)
 - Shared MSBuild settings via `Directory.Build.props`
 - Stable MCP SDK package `ModelContextProtocol` 1.2.0
 - `ManagePackageVersionsCentrally=false` so the project is self-contained

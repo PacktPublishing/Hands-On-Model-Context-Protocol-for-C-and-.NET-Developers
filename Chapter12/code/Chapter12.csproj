@@ -1,48 +1,53 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+	<PropertyGroup>
 	<OutputType>Exe</OutputType>
-	<TargetFramework>net9.0</TargetFramework>
+	<TargetFramework>net10.0</TargetFramework>
 	<Nullable>enable</Nullable>
 	<ImplicitUsings>enable</ImplicitUsings>
 	<RootNamespace>TravelBooking.Chapter12</RootNamespace>
 	<AssemblyName>TravelBooking.Chapter12</AssemblyName>
 	<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-  </PropertyGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
+	<ItemGroup>
 	<!-- Reference snippet files (ch12_*.cs) are verbatim chapter listings.
 		 They contain overlapping type definitions, partial classes, and
 		 external dependencies (Polly, Redis, OpenTelemetry, Azure SDKs,
-		 Blazor / MAUI, Dapr, Aspire) that cannot compile together as a
-		 single project. They are excluded from compilation and exist as
-		 reference material. -->
-    <Compile Remove="ch12_1_mcp_metrics_instruments.cs" />
-    <Compile Remove="ch12_10_load_shedding_middleware.cs" />
-    <Compile Remove="ch12_11_aspire_app_host.cs" />
-    <Compile Remove="ch12_2_structured_logging_correlation.cs" />
-    <Compile Remove="ch12_3_otel_exporter_config.cs" />
-    <Compile Remove="ch12_4_distributed_tracing_activity.cs" />
-    <Compile Remove="ch12_5_auto_instrumentation_middleware.cs" />
-    <Compile Remove="ch12_6_token_usage_tracker.cs" />
-    <Compile Remove="ch12_7_budget_cap_enforcer.cs" />
-    <Compile Remove="ch12_8_llm_response_cache.cs" />
-    <Compile Remove="ch12_9_consistent_hash_router.cs" />
-    <None Include="ch12_1_mcp_metrics_instruments.cs" />
-    <None Include="ch12_10_load_shedding_middleware.cs" />
-    <None Include="ch12_11_aspire_app_host.cs" />
-    <None Include="ch12_2_structured_logging_correlation.cs" />
-    <None Include="ch12_3_otel_exporter_config.cs" />
-    <None Include="ch12_4_distributed_tracing_activity.cs" />
-    <None Include="ch12_5_auto_instrumentation_middleware.cs" />
-    <None Include="ch12_6_token_usage_tracker.cs" />
-    <None Include="ch12_7_budget_cap_enforcer.cs" />
-    <None Include="ch12_8_llm_response_cache.cs" />
-    <None Include="ch12_9_consistent_hash_router.cs" />
-  </ItemGroup>
+		 ASP.NET Core middleware, Dapr, Aspire) that cannot compile together
+		 as a single project. They are excluded from compilation and exist as
+		 reference material read alongside the chapter text; the runnable
+		 consolidation is in Demos.cs. -->
+		<Compile Remove="ch12_1_mcp_metrics_instruments.cs" />
+		<Compile Remove="ch12_2_structured_logging_correlation.cs" />
+		<Compile Remove="ch12_3_otel_exporter_config.cs" />
+		<Compile Remove="ch12_4_distributed_tracing_activity.cs" />
+		<Compile Remove="ch12_5_auto_instrumentation_middleware.cs" />
+		<Compile Remove="ch12_6_token_usage_tracker.cs" />
+		<Compile Remove="ch12_7_budget_cap_enforcer.cs" />
+		<Compile Remove="ch12_8_llm_response_cache.cs" />
+		<Compile Remove="ch12_9_consistent_hash_router.cs" />
+		<Compile Remove="ch12_10_load_shedding_middleware.cs" />
+		<Compile Remove="ch12_11_mcp_gateway.cs" />
+		<Compile Remove="ch12_12_aspire_app_host.cs" />
+		<Compile Remove="ch12_13_safe_remediation.cs" />
+		<None Include="ch12_1_mcp_metrics_instruments.cs" />
+		<None Include="ch12_2_structured_logging_correlation.cs" />
+		<None Include="ch12_3_otel_exporter_config.cs" />
+		<None Include="ch12_4_distributed_tracing_activity.cs" />
+		<None Include="ch12_5_auto_instrumentation_middleware.cs" />
+		<None Include="ch12_6_token_usage_tracker.cs" />
+		<None Include="ch12_7_budget_cap_enforcer.cs" />
+		<None Include="ch12_8_llm_response_cache.cs" />
+		<None Include="ch12_9_consistent_hash_router.cs" />
+		<None Include="ch12_10_load_shedding_middleware.cs" />
+		<None Include="ch12_11_mcp_gateway.cs" />
+		<None Include="ch12_12_aspire_app_host.cs" />
+		<None Include="ch12_13_safe_remediation.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
 	<PackageReference Include="ModelContextProtocol" Version="1.2.0" />
-  </ItemGroup>
+	</ItemGroup>
 
 </Project>

@@ -33,7 +33,7 @@ Chapter04/
 │   ├── launch.json            # Run SLA acceptance tests
 │   └── tasks.json             # Build task
 ├── Directory.Build.props      # Solution-wide MSBuild settings
-├── global.json                # SDK version pin — 9.0.100
+├── global.json                # SDK version pin — 10.0.100
 └── solutions/
     └── solution-quiz.md
 ```
@@ -44,7 +44,7 @@ The `ch04_1` through `ch04_3` files in `code/` are reference snippets excluded f
 
 ## Prerequisites
 
-- .NET SDK 9.0.100 or later (`dotnet --version`)
+- .NET SDK 10.0.100 or later (`dotnet --version`)
 - FlightsServer from Chapter 5 must be built before running the SLA acceptance test.
 
 ---

@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.4.5
+// Chapter 12 — Section 12.4.3
 // Priority-based load shedding middleware.
 // Rejects low-priority requests with HTTP 503 + Retry-After when active
 // request count exceeds the threshold for that priority tier.

@@ -55,7 +55,7 @@ Chapter05/
 │   ├── launch.json                             # Run Chapter 05 project
 │   └── tasks.json                              # Build task
 ├── Directory.Build.props                       # Solution-wide MSBuild settings
-├── global.json                                 # SDK version pin — 9.0.100
+├── global.json                                 # SDK version pin — 10.0.100
 └── solutions/
     └── solution-quiz.md
 ```
@@ -68,7 +68,7 @@ The seventeen `ch05_*.cs` files are the **verbatim chapter listings** — they r
 
 ## Prerequisites
 
-- .NET SDK 9.0.100 or later (`dotnet --version`)
+- .NET SDK 10.0.100 or later (`dotnet --version`)
 
 ---
 

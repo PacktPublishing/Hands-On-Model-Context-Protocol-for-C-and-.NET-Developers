@@ -1,11 +1,11 @@
 # Chapter 11 — Quiz questions
 
-1. Your team deploys the Payments MCP server using a single-stage Dockerfile and a security scanner flags 47 vulnerabilities in the SDK tools included in the image. Describe the changes required to eliminate these vulnerabilities and explain why the final image size changes.
+1. The `ToolCallRecorder` wraps `McpClient` and intercepts `CallToolAsync`. Explain why recording at the `McpClient` layer is preferable to adding logging inside the agent's `RunAsync` method, and describe one scenario where the McpClient-level recorder would not capture a tool call that the agent made.
 
-2. The Hotels MCP server is deployed to a Container App with a minimum replica count of 0. Users report intermittent 10-second delays on hotel search during off-peak hours. Identify the cause, propose a solution, and explain the cost trade-off.
+2. The `FaultInjectionServer.CreateAsync` method uses a lambda returning `CallToolResponse(IsError: true)`. The SDK offers two ways to signal failure from a tool: returning `IsError: true` in the result, and throwing an `McpException`. Describe the behavioral difference in how `McpClient` delivers each to the calling agent, and explain when you would choose each approach in a fault injection scenario.
 
-3. You add a new `cancel_flight` tool to the Flights capability library. The tool cancels a booking and processes a refund in a single operation. Explain whether this change requires a major, minor, or patch version increment, and whether Durable Functions orchestration is appropriate for this operation.
+3. The `PromptRegressionHarness` uses cosine similarity over TF-IDF vectors to compare baseline and current output. A flight booking confirmation always includes a dynamic booking reference (e.g., `REF-20250801-001`) that changes every run. Describe the pre-processing step you would add to the harness to prevent the dynamic reference from causing every regression test to fail.
 
-4. A GitHub Actions workflow is configured with an Entra ID federated credential that allows any branch in the repository to deploy to production. Describe the security risk and the specific change needed to address it.
+4. The adversarial test for "book cheapest flight" expects the behavior classification `"clarification"`. Describe the implementation of `ClassifyBehavior(AgentResult)` that distinguishes a clarification response from an escalation or a completed booking without hard-coding specific strings that would break on paraphrasing.
 
-5. Your team uses blue/green deployment for the Payments MCP server. During the Phase 2 canary, 8% of payment requests fail with a 503 error. The remaining 92% of traffic is still on the previous revision and healthy. Describe the correct immediate action, the diagnostic steps, and the criteria that must be met before attempting a second deployment.
+5. Golden test cases record expected tool-call sequences. If an LLM update changes the model's planning behavior and the new sequence is also correct (just different), the golden test fails. Describe the change you would make to `GoldenTestCase` to allow multiple valid sequences so the test passes for either the old or the new correct behavior.
