@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.1.3
+// Chapter 15 — Section 15.1.3
 // OpenTelemetry configuration subscribing to both the SDK's built-in
 // "ModelContextProtocol" source/meter and the application-level
 // "TravelBooking.Flights" source/meter.

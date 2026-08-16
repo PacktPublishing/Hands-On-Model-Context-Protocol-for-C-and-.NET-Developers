@@ -2,11 +2,11 @@
 
 ## Overview
 
-Code samples for Chapter 7.
-`d:/gitbook/ModelContextProtocol/chapters/Ch07.md` for full explanations.
+This directory contains the companion code for Chapter 7 of
+*Hands-On MCP for C# and .NET Developers*. The book chapter provides the
+concepts, walkthroughs, and explanations that accompany these samples.
 
-This chapter follows the same standards used by the rest of the
-`HandsOnMCPCSharp` solution:
+The samples follow the repository's shared chapter conventions:
 
 - Pinned .NET SDK via `global.json` (10.0.100, `rollForward: latestMinor`)
 - Shared MSBuild settings via `Directory.Build.props`

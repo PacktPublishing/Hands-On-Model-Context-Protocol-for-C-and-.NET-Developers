@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.1.2
+// Chapter 15 — Section 15.1.2
 // MCP server metrics registration using System.Diagnostics.Metrics.
 // IMeterFactory is the DI-friendly alternative to new Meter() — it participates
 // in the container lifetime and integrates with AddOpenTelemetry() configuration.

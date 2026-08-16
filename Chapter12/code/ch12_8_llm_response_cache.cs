@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.3.3
+// Chapter 15 — Section 15.3.3
 // LLM response caching with normalised prompt hashing and scope-based TTLs.
 // The cache key is a SHA-256 hash of the normalised prompt so minor formatting
 // differences (whitespace, parameter order) do not cause unnecessary cache misses.

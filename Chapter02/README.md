@@ -326,7 +326,7 @@ public async Task Tool_schema_matches_snapshot()
 ### Prerequisites
 
 - **.NET SDK 10.0.201** or later
-- **Visual Studio 2022+** or .NET CLI
+- **Visual Studio 2026** or .NET CLI
 - **PowerShell** (recommended for environment setup)
 
 ### Quick Start

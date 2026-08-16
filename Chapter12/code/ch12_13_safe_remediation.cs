@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.7.3
+// Chapter 15 — Section 15.7.3
 // Safe auto-remediation framework with bounded blast radius.
 
 using Microsoft.Extensions.Logging;

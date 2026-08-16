@@ -136,7 +136,7 @@ public class SearchFlightsTool {
 ### Prerequisites
 
 - **.NET SDK 10.0.201** or later
-- **Visual Studio 2022+** or .NET CLI
+- **Visual Studio 2026** or .NET CLI
 - **PowerShell** (recommended for SDK environment setup)
 
 > **IMPORTANT NOTE**: This project requires .NET 10 SDK. If you encounter build errors mentioning SDK paths, see the "SDK Environment Setup" section below.

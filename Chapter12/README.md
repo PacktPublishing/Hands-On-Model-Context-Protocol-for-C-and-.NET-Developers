@@ -1,12 +1,12 @@
-# Chapter 12: Observability and Scale: Metrics, Tracing, Costs, and Sharding
+# Chapter 12: Design UX with Blazor and .NET MAUI: Background Work, and Offline
 
 ## Overview
 
-Code samples for Chapter 12. See the chapter text in
-`d:/gitbook/ModelContextProtocol/chapters/Ch12.md` for full explanations.
+This directory contains the companion code for Chapter 12 of
+*Hands-On MCP for C# and .NET Developers*. The book chapter provides the
+concepts, walkthroughs, and explanations that accompany these samples.
 
-This chapter follows the same standards used by the rest of the
-`HandsOnMCPCSharp` solution:
+The samples follow the repository's shared chapter conventions:
 
 - Pinned .NET SDK via `global.json` (10.0.100, `rollForward: latestMinor`)
 - Shared MSBuild settings via `Directory.Build.props`
@@ -22,39 +22,40 @@ dotnet build
 dotnet run
 ```
 
-`Demos.cs` distils the `ch12_*.cs` snippets into a self-contained
-implementation that compiles against only the BCL, and `Program.cs` walks
-through each concept end-to-end. The verbatim snippet files stay in `code/`
-as reading material next to the book.
-
-The runnable console host exercises:
-
-- `TokenUsageTracker` (`ch12_6`) -- prompt/completion/cached token counters
-- `BudgetCapEnforcer` (`ch12_7`) -- per-workflow and per-tenant token caps
-- `LlmResponseKeyBuilder` (`ch12_8`) -- normalised prompt hashing + scope TTLs
-- `ConsistentHashRouter` (`ch12_9`) -- SHA-256 hash-ring routing with vnodes
-- `LoadShedder` (`ch12_10`) -- priority-based load shedding
+`Demos.cs` and `Program.cs` provide runnable orientation examples, while all
+`ch12_*.cs` files remain in `code/` as verbatim chapter listings.
 
 ## Code samples
 
-See the `code/` directory. Files are named `ch12_N_description.cs`.
-Each file maps to a section of the chapter and is intended to be read
-alongside the book, then copied into a dedicated project (with the
-packages called out by the chapter) for hands-on experimentation:
+See the `code/` directory. Files are named `ch12_N_description.cs`:
 
-- `ch12_1_mcp_metrics_instruments.cs` -- metrics instruments
-- `ch12_2_structured_logging_correlation.cs` -- structured logging + correlation
-- `ch12_3_otel_exporter_config.cs` -- OpenTelemetry exporter configuration
-- `ch12_4_distributed_tracing_activity.cs` -- distributed tracing with Activity
-- `ch12_5_auto_instrumentation_middleware.cs` -- auto-instrumentation middleware
-- `ch12_6_token_usage_tracker.cs` -- token usage tracker
-- `ch12_7_budget_cap_enforcer.cs` -- budget cap enforcer
-- `ch12_8_llm_response_cache.cs` -- LLM response cache
-- `ch12_9_consistent_hash_router.cs` -- consistent hash router
-- `ch12_10_load_shedding_middleware.cs` -- load-shedding middleware
-- `ch12_11_mcp_gateway.cs` -- MCP gateway middleware
-- `ch12_12_aspire_app_host.cs` -- .NET Aspire app host
-- `ch12_13_safe_remediation.cs` -- safe auto-remediation framework
+- `ch12_1_host_configuration.cs`
+- `ch12_1_mcp_metrics_instruments.cs`
+- `ch12_2_streaming_search_component.cs`
+- `ch12_2_structured_logging_correlation.cs`
+- `ch12_3_cancellation_component.cs`
+- `ch12_3_otel_exporter_config.cs`
+- `ch12_4_distributed_tracing_activity.cs`
+- `ch12_4_mcp_error_handler.cs`
+- `ch12_5_auto_instrumentation_middleware.cs`
+- `ch12_5_mcp_job_queue.cs`
+- `ch12_6_job_processor_service.cs`
+- `ch12_6_token_usage_tracker.cs`
+- `ch12_7_budget_cap_enforcer.cs`
+- `ch12_7_job_status_display.cs`
+- `ch12_8_llm_response_cache.cs`
+- `ch12_8_retry_processor.cs`
+- `ch12_9_caching_mcp_client.cs`
+- `ch12_9_consistent_hash_router.cs`
+- `ch12_10_connectivity_service.cs`
+- `ch12_10_load_shedding_middleware.cs`
+- `ch12_11_mcp_gateway.cs`
+- `ch12_11_offline_retry_queue.cs`
+- `ch12_12_aspire_app_host.cs`
+- `ch12_12_ux_metrics.cs`
+- `ch12_13_safe_remediation.cs`
+- `ch12_13_traced_streaming_component.cs`
+- `ch12_14_native_approval_provider.cs`
 
 ## Reuse from earlier chapters
 
@@ -70,3 +71,8 @@ When a Chapter 12 snippet references a service such as
 `IFlightSearchService`, `IIdempotencyStore`, validators, or the
 sanitisation filter, prefer the implementations already in Chapters 5 and 6
 rather than re-introducing local copies.
+
+## Solutions
+
+Quiz questions are in `solutions/solution-quiz.md`, and answers are in
+`solutions/solution-quiz-answers.md`.

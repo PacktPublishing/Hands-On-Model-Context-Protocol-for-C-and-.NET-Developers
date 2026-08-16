@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.2.2
+// Chapter 15 — Section 15.2.2
 // Application-level ActivitySource instrumentation for distributed tracing.
 // The SDK's "ModelContextProtocol" ActivitySource creates a span
 // automatically for the MCP protocol exchange. This file adds a child span

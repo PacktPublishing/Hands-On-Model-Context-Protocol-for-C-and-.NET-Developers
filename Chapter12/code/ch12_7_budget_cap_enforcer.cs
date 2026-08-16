@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.3.2
+// Chapter 15 — Section 15.3.2
 // Per-workflow and per-period budget cap enforcement.
 // ConcurrentDictionary.AddOrUpdate atomically increments the token count and
 // returns the new total so the cap check is coherent under concurrent requests.
