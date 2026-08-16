@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.5.3
+// Chapter 15 — Section 15.5.3
 // MCP gateway middleware with token exchange, audit logging, and rate limiting.
 
 using System.Net.Http.Headers;

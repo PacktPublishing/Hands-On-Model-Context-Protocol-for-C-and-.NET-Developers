@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.4.2
+// Chapter 15 — Section 15.4.2
 // Consistent hash ring for data-affinity routing of MCP requests to server instances.
 // Virtual nodes (150 per server) distribute servers evenly around the ring, preventing
 // the hot-spot problem that occurs with too few physical positions.

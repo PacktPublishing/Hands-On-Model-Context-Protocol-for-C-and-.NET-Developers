@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.3.1
+// Chapter 15 — Section 15.3.1
 // Token usage tracking with multi-dimensional Counter attribution.
 // Records prompt and completion tokens per LLM call, tagged with
 // tool name, tenant ID, and session ID so cost can be attributed

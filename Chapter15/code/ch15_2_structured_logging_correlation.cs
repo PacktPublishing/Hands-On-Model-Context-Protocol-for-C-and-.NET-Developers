@@ -1,4 +1,4 @@
-// Chapter 12 — Section 12.1.4
+// Chapter 15 — Section 15.1.4
 // Structured logging with correlation ID propagation using ILogger.BeginScope.
 // BeginScope attaches key-value pairs to every log entry within the scope
 // without requiring explicit passing through the call chain.

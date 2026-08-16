@@ -1,28 +1,28 @@
-// Chapter 12 -- runnable adaptations of the chapter snippets.
+// Chapter 15 -- runnable adaptations of the chapter snippets.
 //
-// The verbatim ch12_*.cs files depend on external infrastructure -- OpenTelemetry
+// The verbatim ch15_*.cs files depend on external infrastructure -- OpenTelemetry
 // exporters, Redis / IDistributedCache, ASP.NET Core middleware, Aspire, and Azure
 // SDKs -- so they cannot compile together as a single console project. The types
 // below distil the same ideas into self-contained code that compiles against only
 // the BCL, and Program.cs exercises each one end-to-end.
 //
-// TokenUsageTracker    (ch12_6): aggregates prompt/completion/cached tokens via
+// TokenUsageTracker    (ch15_6): aggregates prompt/completion/cached tokens via
 //                                System.Diagnostics.Metrics so the same counters
 //                                are publishable to OTLP.
-// BudgetCapEnforcer    (ch12_7): per-workflow and per-tenant token caps.
-// LlmResponseKeyBuilder(ch12_8): normalised prompt hashing + scope-based TTLs.
-// ConsistentHashRouter (ch12_9): SHA-256 + virtual nodes ring router.
-// LoadShedder          (ch12_10): priority-based load shedding decision.
+// BudgetCapEnforcer    (ch15_7): per-workflow and per-tenant token caps.
+// LlmResponseKeyBuilder(ch15_8): normalised prompt hashing + scope-based TTLs.
+// ConsistentHashRouter (ch15_9): SHA-256 + virtual nodes ring router.
+// LoadShedder          (ch15_10): priority-based load shedding decision.
 
 using System.Collections.Concurrent;
 using System.Diagnostics.Metrics;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace TravelBooking.Chapter12;
+namespace TravelBooking.Chapter15;
 
 // ---------------------------------------------------------------------------
-// ch12_6 -- Token usage tracker
+// ch15_6 -- Token usage tracker
 // ---------------------------------------------------------------------------
 public sealed class TokenUsageTracker : IDisposable
 {
@@ -63,7 +63,7 @@ public sealed class TokenUsageTracker : IDisposable
 }
 
 // ---------------------------------------------------------------------------
-// ch12_7 -- Budget cap enforcer
+// ch15_7 -- Budget cap enforcer
 // ---------------------------------------------------------------------------
 public sealed class BudgetExceededException : Exception
 {
@@ -96,7 +96,7 @@ public sealed class BudgetCapEnforcer
 }
 
 // ---------------------------------------------------------------------------
-// ch12_8 -- LLM response cache key builder (normalised prompt + scope TTL)
+// ch15_8 -- LLM response cache key builder (normalised prompt + scope TTL)
 // ---------------------------------------------------------------------------
 public sealed class LlmResponseKeyBuilder
 {
@@ -126,7 +126,7 @@ public sealed class LlmResponseKeyBuilder
 }
 
 // ---------------------------------------------------------------------------
-// ch12_9 -- Consistent hash router
+// ch15_9 -- Consistent hash router
 // ---------------------------------------------------------------------------
 public sealed class ConsistentHashRouter
 {
@@ -180,7 +180,7 @@ public sealed class ConsistentHashRouter
 }
 
 // ---------------------------------------------------------------------------
-// ch12_10 -- Priority-based load shedding decision
+// ch15_10 -- Priority-based load shedding decision
 // ---------------------------------------------------------------------------
 public enum RequestPriority { Critical, High, Standard, BestEffort }
 
