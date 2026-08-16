@@ -2,11 +2,11 @@
 
 ## Overview
 
-Code samples for Chapter 11. See the chapter text in
-`d:/gitbook/ModelContextProtocol/chapters/Ch11.md` for full explanations.
+This directory contains the companion code for Chapter 11 of
+*Hands-On MCP for C# and .NET Developers*. The book chapter provides the
+concepts, walkthroughs, and explanations that accompany these samples.
 
-This chapter follows the same standards used by the rest of the
-`HandsOnMCPCSharp` solution:
+The samples follow the repository's shared chapter conventions:
 
 - Pinned .NET SDK via `global.json` (10.0.100, `rollForward: latestMinor`)
 - Shared MSBuild settings via `Directory.Build.props`
@@ -43,4 +43,5 @@ implementations already in Chapters 5, 6, and 9.
 
 ## Solutions
 
-Quiz answers are in `solutions/solution-quiz.md`.
+Quiz questions are in `solutions/solution-quiz.md`, and answers are in
+`solutions/solution-quiz-answers.md`.

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<OutputType>Exe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<RootNamespace>TravelBooking.Chapter14</RootNamespace>
+	<AssemblyName>TravelBooking.Chapter14</AssemblyName>
+	<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<!-- Reference snippet files (ch14_*.cs) are verbatim chapter listings.
+		 They include framework-specific dependencies and overlapping definitions
+		 and are intentionally excluded from compilation. -->
+    <Compile Remove="ch14_*.cs" />
+    <None Include="ch14_*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="ModelContextProtocol" Version="1.2.0" />
+  </ItemGroup>
+
+</Project>

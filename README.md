@@ -44,17 +44,20 @@ Every chapter builds on the previous one. By the end you will have a complete, r
 | 9 | Building agentic workflows with MCP and .NET | 20–25 |
 | 10 | Multi-agent coordination with MCP | 15–20 |
 | 11 | Testing and evaluating MCP agents | 15–20 |
-| 12 | Observability and Scale: Metrics, Tracing, Costs, and Sharding | 15–20 |
+| 12 | Design UX with Blazor and .NET MAUI: Background Work, and Offline | 15–20 |
+| 13 | Secure and Govern MCP - AuthN/Z, Secrets, Azure API Management | 15–20 |
+| 14 | Deploy to Azure - Azure Functions & Container Apps with CI/CD | 15–20 |
+| 15 | Observe and Scale MCP - Metrics, Tracing, Costs, and Sharding | 15–20 |
 
 ---
 
 ## Requirements
 
 - .NET 10 SDK — https://dotnet.microsoft.com/download
-- Visual Studio 2022 / VS Code / Rider
+- Visual Studio 2026 / VS Code / Rider
 - Docker Desktop (Chapters 3, 11)
 - An MCP-compatible host such as Claude Desktop or VS Code Copilot (Chapter 3 onward)
-- Azure subscription (Chapters 10, 11, 12)
+- Azure subscription (Chapters 13, 14, 15)
 
 All code samples target **.NET 10** and use the **official `ModelContextProtocol` NuGet package**.
 
@@ -69,7 +72,7 @@ HandsOnMCPCSharp/
 │   ├── README.md              ← chapter overview and running instructions
 │   ├── code/                  ← runnable .NET projects
 │   └── solutions/             ← quiz answers
-├── Chapter02/ … Chapter12/    ← same structure
+├── Chapter02/ … Chapter15/    ← same structure
 └── TravelBooking.sln          ← solution file linking all chapter projects
 ```
 
